@@ -1,11 +1,28 @@
-<div align="center">
+# Robiconic Digital – Website
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Dhaka-based digital marketing agency website offering SEO, SEM, Social Media Marketing, and Google Ads campaigns.
 
-  <h1>Built with AI Studio</h2>
+## Adding This Website to GitHub & Hosting with GitHub Pages
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+### Option A: Single-File HTML (Fastest for GitHub Pages)
+If you want to host the original single-file HTML version directly on GitHub Pages without any build step:
+1. Create a new public repository on [GitHub](https://github.com/new) (for example, `robiconic-digital`).
+2. Rename `Robiconic_Digital___Website_2e839a2d.html` to `index.html`.
+3. Upload `index.html` using **Add file → Upload files** on GitHub and click **Commit changes**.
+4. Open **Settings → Pages** in your repository, set **Source** to **Deploy from a branch**, select `main` / `/ (root)`, and click **Save**.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+### Option B: Full React + Vite Project (Using Git CLI)
+```bash
+git init
+git add .
+git commit -m "Initial commit: Robiconic Digital website"
+git branch -M main
+git remote add origin https://github.com/<your-username>/<your-repo>.git
+git push -u origin main
+```
 
-</div>
+### Local Development
+```bash
+npm install
+npm run dev
+```
