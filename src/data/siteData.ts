@@ -61,18 +61,22 @@ export interface SiteContent {
   contactIntro: string;
   contactForm: {
     nameLabel: string;
+    emailLabel: string;
     phoneLabel: string;
     serviceLabel: string;
     messageLabel: string;
     namePlaceholder: string;
+    emailPlaceholder: string;
     phonePlaceholder: string;
     servicePlaceholder: string;
     messagePlaceholder: string;
     submitButton: string;
+    submittingButton: string;
     successTitle: string;
     successMessage: string;
     openEmailButton: string;
     sendAnotherButton: string;
+    confirmNote: string;
   };
   contact: {
     web: string;
@@ -102,7 +106,7 @@ export const SITE_CONTENT_EN: SiteContent = {
     { label: 'Contact', href: '#contact' },
   ],
   hero: {
-    kicker: 'Digital marketing agency in Dhaka',
+    kicker: 'Leading Digital Marketing Agency in Dhaka',
     headlineStart: 'Grow your business on ',
     headlineAccent: 'Google',
     headlineEnd: ' and social media',
@@ -209,18 +213,22 @@ export const SITE_CONTENT_EN: SiteContent = {
   contactIntro: 'Tell us about your business and we will reply within 24 hours.',
   contactForm: {
     nameLabel: 'Your name',
+    emailLabel: 'Your email address',
     phoneLabel: 'Phone or WhatsApp',
     serviceLabel: 'Service you need',
     messageLabel: 'About your business',
     namePlaceholder: 'Your full name',
+    emailPlaceholder: 'you@example.com',
     phonePlaceholder: '+880 1XXX-XXXXXX',
     servicePlaceholder: 'SEO, Google Ads, Social Media...',
     messagePlaceholder: 'Share your website URL, monthly goals, or target market...',
     submitButton: 'Send message',
-    successTitle: 'Enquiry prepared for Robiconic Digital',
-    successMessage: 'Click below to send this directly via your email app, or start another enquiry.',
+    submittingButton: 'Sending message...',
+    successTitle: 'Thank you! Message Sent Successfully',
+    successMessage: 'Your enquiry has been delivered directly to robiconicdigital@gmail.com and a confirmation has been sent to your email.',
     openEmailButton: 'Open Email App',
-    sendAnotherButton: 'Send Another Enquiry',
+    sendAnotherButton: 'Send Another Message',
+    confirmNote: 'We will contact you within 24 hours via Phone or WhatsApp.',
   },
   contact: {
     web: 'robiconicdigital.com',
@@ -357,18 +365,22 @@ export const SITE_CONTENT_BN: SiteContent = {
   contactIntro: 'আপনার ব্যবসার পরিকল্পনা আমাদের জানান, আমরা ২৪ ঘণ্টার মধ্যে উত্তর দেব।',
   contactForm: {
     nameLabel: 'আপনার নাম',
+    emailLabel: 'আপনার ইমেইল এড্রেস',
     phoneLabel: 'ফোন অথবা হোয়াটসঅ্যাপ নম্বর',
     serviceLabel: 'আপনার প্রয়োজনীয় সার্ভিস',
     messageLabel: 'আপনার ব্যবসা সম্পর্কে সংক্ষেপে লিখুন',
     namePlaceholder: 'আপনার পুরো নাম',
+    emailPlaceholder: 'you@example.com',
     phonePlaceholder: '+880 1XXX-XXXXXX',
     servicePlaceholder: 'এসইও, গুগল অ্যাডস, সোশ্যাল মিডিয়া...',
     messagePlaceholder: 'আপনার ওয়েবসাইটের লিংক, মাসিক লক্ষ্য বা টার্গেট মার্কেট জানান...',
     submitButton: 'মেসেজ পাঠান',
-    successTitle: 'রবিকনিক ডিজিটালের কাছে মেসেজ পাঠানো প্রস্তুত',
-    successMessage: 'আপনার ইমেইল অ্যাপ দিয়ে সরাসরি পাঠাতে নিচের বাটনে ক্লিক করুন, অথবা আরেকটি মেসেজ পাঠান।',
+    submittingButton: 'মেসেজ পাঠানো হচ্ছে...',
+    successTitle: 'ধন্যবাদ! আপনার মেসেজটি সফলভাবে পাঠানো হয়েছে',
+    successMessage: 'আপনার বার্তাটি সরাসরি robiconicdigital@gmail.com এ পৌঁছেছে এবং আপনার ইমেইলে একটি কনফার্মেশন পাঠানো হয়েছে।',
     openEmailButton: 'ইমেইল অ্যাপ খুলুন',
     sendAnotherButton: 'আরেকটি মেসেজ পাঠান',
+    confirmNote: 'আমরা ২৪ ঘণ্টার মধ্যে আপনার ফোন বা হোয়াটসঅ্যাপে যোগাযোগ করব।',
   },
   contact: {
     web: 'robiconicdigital.com',
@@ -382,5 +394,5 @@ export const SITE_CONTENT_BN: SiteContent = {
   },
 };
 
-// Default export for backwards compatibility
+// Default export
 export const SITE_CONTENT = SITE_CONTENT_BN;
