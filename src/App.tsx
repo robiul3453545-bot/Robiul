@@ -5,6 +5,7 @@ import { HeroIllustration } from './components/HeroIllustration';
 import { StatsBand } from './components/StatsBand';
 import { ContactSection } from './components/ContactSection';
 import { SITE_CONTENT, type ServiceItem } from './data/siteData';
+import { AIChatAssistant } from './components/AIChatAssistant';
 
 function ServiceIcon({ name, color }: { name: ServiceItem['iconName']; color: string }) {
   const props = { className: 'h-5 w-5', style: { color } };
@@ -235,6 +236,9 @@ export default function App() {
           </button>
         </div>
       </footer>
+      <AIChatAssistant />
     </div>
   );
 }
+
+
