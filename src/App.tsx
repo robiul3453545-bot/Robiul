@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Moon, Search, Share2, Sun, Target, TrendingUp } from 'lucide-react';
+import { Moon, Search, Share2, Sun, Target, TrendingUp, Lock } from 'lucide-react';
 import { Header } from './components/Header';
 import { HeroIllustration } from './components/HeroIllustration';
 import { StatsBand } from './components/StatsBand';
 import { ContactSection } from './components/ContactSection';
 import { AIChatAssistant } from './components/AIChatAssistant';
+import { AdminPanel } from './components/AdminPanel';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { type ServiceItem } from './data/siteData';
 
@@ -22,13 +23,17 @@ function ServiceIcon({ name, color }: { name: ServiceItem['iconName']; color: st
   }
 }
 
-function MainLayout() {
+function MainLayout({ onOpenAdmin }: { onOpenAdmin: () => void }) {
   const { t } = useLanguage();
   const [dark, setDark] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
   const [footerLogoError, setFooterLogoError] = useState(false);
+
+  // Live CMS overrides from Admin Panel
+  const heroKicker = (typeof window !== 'undefined' && localStorage.getItem('cms_hero_kicker')) || t.hero.kicker;
+  const heroLead = (typeof window !== 'undefined' && localStorage.getItem('cms_hero_lead')) || t.hero.lead;
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark);
@@ -47,7 +52,7 @@ function MainLayout() {
           <div className="mx-auto grid max-w-[1140px] items-center gap-12 px-6 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <p className="text-sm font-semibold tracking-wide text-[#0c77bb] dark:text-[#1ea5e8]">
-                {t.hero.kicker}
+                {heroKicker}
               </p>
               <h1 className="mt-3 max-w-2xl font-display text-[clamp(2.4rem,5.2vw,4.1rem)] font-extrabold leading-[1.06] tracking-tight text-[#1a3c8e] [text-wrap:balance] dark:text-white">
                 {t.hero.headlineStart}
@@ -55,7 +60,7 @@ function MainLayout() {
                 {t.hero.headlineEnd}
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-[#58637f] dark:text-[#a6b3d6]">
-                {t.hero.lead}
+                {heroLead}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
@@ -233,14 +238,25 @@ function MainLayout() {
             <span>© {new Date().getFullYear()} Robiconic Digital. {t.footer.rights}</span>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setDark((prev) => !prev)}
-            className="inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-white/15 px-3.5 py-2 text-xs font-medium text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-[#f8701a]"
-          >
-            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            <span>{dark ? t.footer.lightTheme : t.footer.darkTheme}</span>
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={onOpenAdmin}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-xs text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+            >
+              <Lock className="h-3.5 w-3.5 text-[#f8701a]" />
+              <span>Admin Portal</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setDark((prev) => !prev)}
+              className="inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-white/15 px-3.5 py-2 text-xs font-medium text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-[#f8701a]"
+            >
+              {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              <span>{dark ? t.footer.lightTheme : t.footer.darkTheme}</span>
+            </button>
+          </div>
         </div>
       </footer>
       <AIChatAssistant />
@@ -249,9 +265,40 @@ function MainLayout() {
 }
 
 export default function App() {
+  const [isAdminView, setIsAdminView] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.location.hash === '#admin' || window.location.pathname.startsWith('/admin');
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleHash = () => {
+      setIsAdminView(window.location.hash === '#admin' || window.location.pathname.startsWith('/admin'));
+    };
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
   return (
     <LanguageProvider>
-      <MainLayout />
+      {isAdminView ? (
+        <AdminPanel
+          onExit={() => {
+            if (window.location.hash === '#admin') {
+              window.location.hash = '';
+            }
+            setIsAdminView(false);
+          }}
+        />
+      ) : (
+        <MainLayout
+          onOpenAdmin={() => {
+            window.location.hash = 'admin';
+            setIsAdminView(true);
+          }}
+        />
+      )}
     </LanguageProvider>
   );
 }
