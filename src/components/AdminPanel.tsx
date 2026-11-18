@@ -52,8 +52,157 @@ const DEFAULT_INQUIRIES: Inquiry[] = [
   },
 ];
 
+const ADMIN_TEXTS = {
+  bn: {
+    portalTitle: 'রবিকনিক অ্যাডমিন পোর্টাল',
+    portalSubtitle: 'অ্যাডমিন প্যানেলে লগইন করুন',
+    usernameLabel: 'ইউজারনেম (Username)',
+    passwordLabel: 'পাসওয়ার্ড (Password)',
+    defaultPassHint: 'ডিফল্ট পাসওয়ার্ড:',
+    loginBtn: 'প্রবেশ করুন (Login)',
+    backToSite: '← ওয়েবসাইটে ফিরে যান',
+    loginError: 'ইউজারনেম বা পাসওয়ার্ড ভুল হয়েছে! (ডিফল্ট: admin / admin123)',
+    controlCenter: 'কন্ট্রোল সেন্টার',
+    tabDashboard: 'ড্যাশবোর্ড',
+    tabInquiries: 'মেসেজ ও লিড',
+    tabCms: 'কনটেন্ট এডিটর (CMS)',
+    tabAi: 'AI অ্যাসিস্ট্যান্ট',
+    tabSettings: 'অ্যাকাউন্ট সেটিংস',
+    viewSite: 'ওয়েবসাইটে যান',
+    logout: 'লগআউট',
+    welcomeHeader: 'স্বাগতম, রবিউল!',
+    welcomeSub: 'Robiconic Digital এর রিয়েল-টাইম কন্ট্রোল প্যানেল',
+    langLabel: 'ভাষা:',
+    kpiTotalLeads: 'মোট লিড (Total Leads)',
+    kpiNewBadge: 'নতুন',
+    kpiServices: 'অ্যাক্টিভ সার্ভিসসমূহ',
+    kpiAiStatus: 'AI অ্যাসিস্ট্যান্ট স্ট্যাটাস',
+    kpiAiOnline: 'সক্রিয় (Online)',
+    kpiRoas: 'গড় আরওআই (ROAS)',
+    recentLeadsTitle: 'সর্বশেষ মেসেজ ও লিড',
+    viewAllBtn: 'সবগুলো দেখুন',
+    searchPlaceholder: 'নাম, ফোন বা সার্ভিস দিয়ে খুঁজুন...',
+    allStatus: 'সব স্ট্যাটাস',
+    statusNew: 'নতুন (New)',
+    statusContacted: 'যোগাযোগকৃত',
+    statusClosed: 'সম্পন্ন (Closed)',
+    exportCsv: 'Export CSV',
+    colName: 'গ্রাহকের নাম',
+    colPhone: 'ফোন / WhatsApp',
+    colService: 'প্রয়োজনীয় সার্ভিস',
+    colDate: 'তারিখ',
+    colStatus: 'স্ট্যাটাস',
+    colActions: 'অ্যাকশন',
+    noInquiries: 'কোনো মেসেজ পাওয়া যায়নি।',
+    modalTitle: 'মেসেজের বিস্তারিত তথ্য',
+    modalCustomer: 'গ্রাহকের নাম:',
+    modalPhone: 'ফোন / হোয়াটসঅ্যাপ:',
+    modalService: 'আবেদিত সার্ভিস:',
+    modalMessage: 'বার্তা (Message):',
+    modalNoNote: 'কোনো অতিরিক্ত নোট দেননি।',
+    modalSendWa: 'WhatsApp মেসেজ পাঠান',
+    modalClose: 'বন্ধ করুন',
+    deleteConfirm: 'আপনি কি এই মেসেজটি মুছে ফেলতে চান?',
+    cmsHeroTitle: 'হিরো সেকশন কনটেন্ট (Hero Section)',
+    cmsKickerLabel: 'ছোট ট্যাগলাইন (Kicker Text)',
+    cmsLeadLabel: 'বর্ণনা (Hero Lead Description)',
+    cmsContactTitle: 'যোগাযোগের তথ্য (Contact Information)',
+    cmsEmailLabel: 'ইমেইল এড্রেস',
+    cmsPhoneLabel: 'ফোন বা হটলাইন নম্বর',
+    cmsLocationLabel: 'অফিস লোকেশন (Location)',
+    cmsSaveBtn: 'পরিবর্তন সেভ করুন',
+    cmsSaveSuccess: 'সফলভাবে সেভ হয়েছে!',
+    aiTitle: 'Gemini AI অ্যাসিস্ট্যান্ট প্রম্পট',
+    aiSubtitle: 'AI কাস্টমারদের সাথে কীভাবে কথা বলবে এবং কী কী তথ্য দেবে তা নির্ধারণ করুন',
+    aiPromptLabel: 'AI সিস্টেম ইন্সট্রাকশন (System Instructions)',
+    aiModelNote: 'বর্তমানে সক্রিয় মডেল: Gemini 3.5 Flash Lite (সুপার ফাস্ট এবং নির্ভুল বাংলা ও ইংরেজি উত্তর দেয়)।',
+    aiSaveBtn: 'AI সেটিংস সংরক্ষণ করুন',
+    aiSaveSuccess: 'AI প্রম্পট আপডেট হয়েছে!',
+    settingsPassTitle: 'পাসওয়ার্ড পরিবর্তন করুন',
+    settingsNewPass: 'নতুন অ্যাডমিন পাসওয়ার্ড',
+    settingsNewPassPlaceholder: 'নতুন পাসওয়ার্ড দিন...',
+    settingsUpdateBtn: 'পাসওয়ার্ড আপডেট করুন',
+    settingsPassUpdated: 'পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে!',
+    settingsPassMin: 'কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড দিন।',
+  },
+  en: {
+    portalTitle: 'Robiconic Admin Portal',
+    portalSubtitle: 'Sign in to Admin Dashboard',
+    usernameLabel: 'Username',
+    passwordLabel: 'Password',
+    defaultPassHint: 'Default Password:',
+    loginBtn: 'Sign In (Login)',
+    backToSite: '← Back to Website',
+    loginError: 'Incorrect username or password! (Default: admin / admin123)',
+    controlCenter: 'Control Center',
+    tabDashboard: 'Dashboard',
+    tabInquiries: 'Inquiries & Leads',
+    tabCms: 'Content Editor (CMS)',
+    tabAi: 'AI Assistant',
+    tabSettings: 'Account Settings',
+    viewSite: 'View Live Site',
+    logout: 'Logout',
+    welcomeHeader: 'Welcome, Robiul!',
+    welcomeSub: 'Robiconic Digital Real-time Control Center',
+    langLabel: 'Language:',
+    kpiTotalLeads: 'Total Leads',
+    kpiNewBadge: 'New',
+    kpiServices: 'Active Services',
+    kpiAiStatus: 'AI Assistant Status',
+    kpiAiOnline: 'Online (Active)',
+    kpiRoas: 'Average ROAS',
+    recentLeadsTitle: 'Recent Inquiries & Leads',
+    viewAllBtn: 'View All',
+    searchPlaceholder: 'Search by name, phone, or service...',
+    allStatus: 'All Statuses',
+    statusNew: 'New',
+    statusContacted: 'Contacted',
+    statusClosed: 'Closed',
+    exportCsv: 'Export CSV',
+    colName: 'Customer Name',
+    colPhone: 'Phone / WhatsApp',
+    colService: 'Requested Service',
+    colDate: 'Date',
+    colStatus: 'Status',
+    colActions: 'Actions',
+    noInquiries: 'No inquiries found.',
+    modalTitle: 'Inquiry Details',
+    modalCustomer: 'Customer Name:',
+    modalPhone: 'Phone / WhatsApp:',
+    modalService: 'Requested Service:',
+    modalMessage: 'Message Content:',
+    modalNoNote: 'No additional message provided.',
+    modalSendWa: 'Send WhatsApp Message',
+    modalClose: 'Close',
+    deleteConfirm: 'Are you sure you want to delete this inquiry?',
+    cmsHeroTitle: 'Hero Section Content',
+    cmsKickerLabel: 'Kicker / Top Tagline',
+    cmsLeadLabel: 'Hero Lead Description',
+    cmsContactTitle: 'Contact Information',
+    cmsEmailLabel: 'Email Address',
+    cmsPhoneLabel: 'Phone / Hotline Number',
+    cmsLocationLabel: 'Office Location',
+    cmsSaveBtn: 'Save Changes',
+    cmsSaveSuccess: 'Changes saved successfully!',
+    aiTitle: 'Gemini AI Assistant Configuration',
+    aiSubtitle: 'Define how the AI answers customer questions and services offered',
+    aiPromptLabel: 'AI System Instructions',
+    aiModelNote: 'Currently Active Model: Gemini 3.5 Flash Lite (Fast & accurate for Bengali and English responses).',
+    aiSaveBtn: 'Save AI Settings',
+    aiSaveSuccess: 'AI Prompt updated successfully!',
+    settingsPassTitle: 'Change Password',
+    settingsNewPass: 'New Admin Password',
+    settingsNewPassPlaceholder: 'Enter new password...',
+    settingsUpdateBtn: 'Update Password',
+    settingsPassUpdated: 'Password updated successfully!',
+    settingsPassMin: 'Password must be at least 6 characters long.',
+  },
+};
+
 export function AdminPanel({ onExit }: { onExit: () => void }) {
   const { language, toggleLanguage, t } = useLanguage();
+  const at = ADMIN_TEXTS[language];
+
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     return sessionStorage.getItem('admin_auth') === 'true';
   });
@@ -91,6 +240,13 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
   });
   const [aiSaveSuccess, setAiSaveSuccess] = useState(false);
 
+  // Keep CMS state updated when language switches
+  useEffect(() => {
+    if (!localStorage.getItem('cms_hero_kicker')) setCmsHeroKicker(t.hero.kicker);
+    if (!localStorage.getItem('cms_hero_lead')) setCmsHeroLead(t.hero.lead);
+    if (!localStorage.getItem('cms_location')) setCmsLocation(t.contact.location);
+  }, [language, t]);
+
   // Save inquiries
   useEffect(() => {
     localStorage.setItem('robiconic_inquiries', JSON.stringify(inquiries));
@@ -104,7 +260,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
       sessionStorage.setItem('admin_auth', 'true');
       setLoginError('');
     } else {
-      setLoginError('ইউজারনেম বা পাসওয়ার্ড ভুল হয়েছে! (ডিফল্ট: admin / admin123)');
+      setLoginError(at.loginError);
     }
   };
 
@@ -121,7 +277,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
   };
 
   const deleteInquiry = (id: string) => {
-    if (confirm('আপনি কি এই মেসেজটি মুছে ফেলতে চান?')) {
+    if (confirm(at.deleteConfirm)) {
       setInquiries((prev) => prev.filter((item) => item.id !== id));
       if (selectedInquiry?.id === id) setSelectedInquiry(null);
     }
@@ -177,14 +333,28 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#0a1330] via-[#0f2257] to-[#1a3c8e] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-[#0a1330] via-[#0f2257] to-[#1a3c8e] flex items-center justify-center p-4 relative">
+        {/* Language switch on login screen */}
+        <div className="absolute top-6 right-6">
+          <button
+            type="button"
+            onClick={toggleLanguage}
+            className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3.5 py-2 text-xs font-bold text-white shadow-lg backdrop-blur-md hover:bg-white/20 transition-all"
+          >
+            <Globe className="h-4 w-4 text-[#1ea5e8]" />
+            <span className={language === 'bn' ? 'font-extrabold text-[#f8701a]' : 'opacity-70'}>বাংলা</span>
+            <span className="opacity-40">/</span>
+            <span className={language === 'en' ? 'font-extrabold text-[#f8701a]' : 'opacity-70'}>EN</span>
+          </button>
+        </div>
+
         <div className="w-full max-w-md rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl p-8 shadow-2xl text-white">
           <div className="text-center">
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f8701a] shadow-lg shadow-[#f8701a]/30">
               <Key className="h-7 w-7 text-white" />
             </div>
-            <h2 className="mt-4 text-2xl font-extrabold tracking-tight">Robiconic Admin Portal</h2>
-            <p className="mt-1 text-sm text-blue-200">অ্যাডমিন প্যানেলে লগইন করুন</p>
+            <h2 className="mt-4 text-2xl font-extrabold tracking-tight">{at.portalTitle}</h2>
+            <p className="mt-1 text-sm text-blue-200">{at.portalSubtitle}</p>
           </div>
 
           <form onSubmit={handleLogin} className="mt-8 space-y-4">
@@ -195,7 +365,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
             )}
             <div>
               <label className="block text-xs font-semibold text-blue-100 uppercase tracking-wider mb-1.5">
-                Username
+                {at.usernameLabel}
               </label>
               <input
                 type="text"
@@ -208,7 +378,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
             </div>
             <div>
               <label className="block text-xs font-semibold text-blue-100 uppercase tracking-wider mb-1.5">
-                Password
+                {at.passwordLabel}
               </label>
               <input
                 type="password"
@@ -218,13 +388,13 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                 className="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-white/40 outline-none focus:border-[#f8701a] focus:bg-white/15 transition-all"
                 required
               />
-              <p className="mt-1 text-[11px] text-blue-200">ডিফল্ট পাসওয়ার্ড: <code className="bg-black/30 px-1 py-0.5 rounded">admin123</code></p>
+              <p className="mt-1 text-[11px] text-blue-200">{at.defaultPassHint} <code className="bg-black/30 px-1 py-0.5 rounded">admin123</code></p>
             </div>
             <button
               type="submit"
               className="mt-2 w-full rounded-xl bg-[#f8701a] py-3 text-sm font-bold text-white shadow-lg shadow-[#f8701a]/40 hover:bg-[#e25f0c] transition-all"
             >
-              প্রবেশ করুন (Login)
+              {at.loginBtn}
             </button>
             <div className="pt-2 text-center">
               <button
@@ -232,7 +402,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                 onClick={onExit}
                 className="text-xs text-white/70 hover:text-white transition-colors"
               >
-                ← ওয়েবসাইটে ফিরে যান (Back to Website)
+                {at.backToSite}
               </button>
             </div>
           </form>
@@ -251,7 +421,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
               <span className="h-3 w-3 rounded-full bg-emerald-400 animate-pulse" />
               <h1 className="font-display font-extrabold text-lg tracking-tight">Robiconic Admin</h1>
             </div>
-            <p className="text-xs text-blue-200 mt-0.5">Control Center</p>
+            <p className="text-xs text-blue-200 mt-0.5">{at.controlCenter}</p>
           </div>
         </div>
 
@@ -263,7 +433,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
             }`}
           >
             <LayoutDashboard className="h-5 w-5" />
-            <span>ড্যাশবোর্ড (Dashboard)</span>
+            <span>{at.tabDashboard}</span>
           </button>
 
           <button
@@ -274,7 +444,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
           >
             <div className="flex items-center gap-3">
               <Inbox className="h-5 w-5" />
-              <span>মেসেজ ও লিড (Inquiries)</span>
+              <span>{at.tabInquiries}</span>
             </div>
             {newLeadsCount > 0 && (
               <span className="bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">
@@ -290,7 +460,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
             }`}
           >
             <FileEdit className="h-5 w-5" />
-            <span>কনটেন্ট এডিটর (CMS)</span>
+            <span>{at.tabCms}</span>
           </button>
 
           <button
@@ -300,7 +470,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
             }`}
           >
             <Bot className="h-5 w-5" />
-            <span>AI অ্যাসিস্ট্যান্ট সেটিংস</span>
+            <span>{at.tabAi}</span>
           </button>
 
           <button
@@ -310,7 +480,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
             }`}
           >
             <Settings className="h-5 w-5" />
-            <span>অ্যাকাউন্ট সেটিংস</span>
+            <span>{at.tabSettings}</span>
           </button>
         </nav>
 
@@ -320,14 +490,14 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
             className="w-full flex items-center justify-center gap-2 rounded-xl bg-white/10 px-4 py-2.5 text-xs font-bold text-white hover:bg-white/20 transition-all"
           >
             <ExternalLink className="h-4 w-4" />
-            <span>ওয়েবসাইটে যান (View Site)</span>
+            <span>{at.viewSite}</span>
           </button>
           <button
             onClick={handleLogout}
             className="w-full flex items-center justify-center gap-2 rounded-xl border border-red-400/30 px-4 py-2 text-xs font-bold text-red-200 hover:bg-red-500/20 transition-all"
           >
             <LogOut className="h-4 w-4" />
-            <span>লগআউট (Logout)</span>
+            <span>{at.logout}</span>
           </button>
         </div>
       </aside>
@@ -338,24 +508,25 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
         <div className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-[#dde6f2] dark:border-[#233468]">
           <div>
             <h2 className="text-2xl font-extrabold tracking-tight text-[#1a3c8e] dark:text-white">
-              {activeTab === 'dashboard' && 'স্বাগতম, রবিউল! (Dashboard Overview)'}
-              {activeTab === 'inquiries' && 'গ্রাহকদের মেসেজ ও লিড (Customer Inquiries)'}
-              {activeTab === 'cms' && 'ওয়েবসাইট কনটেন্ট ম্যানেজমেন্ট (Live CMS)'}
-              {activeTab === 'ai' && 'AI চ্যাট অ্যাসিস্ট্যান্ট কনফিগারেশন'}
-              {activeTab === 'settings' && 'অ্যাডমিন সিকিউরিটি ও পাসওয়ার্ড'}
+              {activeTab === 'dashboard' && at.welcomeHeader}
+              {activeTab === 'inquiries' && at.tabInquiries}
+              {activeTab === 'cms' && at.tabCms}
+              {activeTab === 'ai' && at.tabAi}
+              {activeTab === 'settings' && at.tabSettings}
             </h2>
             <p className="text-sm text-[#58637f] dark:text-[#a6b3d6] mt-0.5">
-              Robiconic Digital এর রিয়েল-টাইম কন্ট্রোল প্যানেল
+              {at.welcomeSub}
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={toggleLanguage}
-              className="inline-flex items-center gap-2 rounded-xl border border-[#dde6f2] bg-white px-3.5 py-2 text-xs font-bold shadow-sm dark:border-[#233468] dark:bg-[#132050]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[#dde6f2] bg-white px-3.5 py-2 text-xs font-bold shadow-sm hover:border-[#f8701a] transition-all dark:border-[#233468] dark:bg-[#132050]"
+              title="Switch Language / ভাষা পরিবর্তন করুন"
             >
-              <Globe className="h-4 w-4 text-[#0c77bb]" />
-              <span>সাইট ল্যাঙ্গুয়েজ: <strong>{language === 'bn' ? 'বাংলা' : 'English'}</strong></span>
+              <Globe className="h-4 w-4 text-[#0c77bb] dark:text-[#1ea5e8]" />
+              <span>{at.langLabel} <strong className="text-[#f8701a]">{language === 'bn' ? 'বাংলা' : 'English'}</strong></span>
             </button>
           </div>
         </div>
@@ -367,34 +538,34 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               <div className="rounded-2xl border border-[#dde6f2] bg-white p-6 shadow-sm dark:border-[#233468] dark:bg-[#132050]">
                 <p className="text-xs font-bold text-[#58637f] uppercase tracking-wider dark:text-[#a6b3d6]">
-                  মোট লিড (Total Leads)
+                  {at.kpiTotalLeads}
                 </p>
                 <div className="mt-2 flex items-baseline justify-between">
                   <span className="text-3xl font-extrabold text-[#1a3c8e] dark:text-white">{inquiries.length}</span>
                   <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-1 rounded-lg">
-                    +{newLeadsCount} নতুন
+                    +{newLeadsCount} {at.kpiNewBadge}
                   </span>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-[#dde6f2] bg-white p-6 shadow-sm dark:border-[#233468] dark:bg-[#132050]">
                 <p className="text-xs font-bold text-[#58637f] uppercase tracking-wider dark:text-[#a6b3d6]">
-                  অ্যাক্টিভ সার্ভিসসমূহ
+                  {at.kpiServices}
                 </p>
                 <div className="mt-2 flex items-baseline justify-between">
-                  <span className="text-3xl font-extrabold text-[#f8701a]">৪টি</span>
+                  <span className="text-3xl font-extrabold text-[#f8701a]">4</span>
                   <span className="text-xs text-[#58637f] dark:text-[#a6b3d6]">SEO, SEM, SMM, Ads</span>
                 </div>
               </div>
 
               <div className="rounded-2xl border border-[#dde6f2] bg-white p-6 shadow-sm dark:border-[#233468] dark:bg-[#132050]">
                 <p className="text-xs font-bold text-[#58637f] uppercase tracking-wider dark:text-[#a6b3d6]">
-                  AI অ্যাসিস্ট্যান্ট স্ট্যাটাস
+                  {at.kpiAiStatus}
                 </p>
                 <div className="mt-2 flex items-baseline justify-between">
                   <span className="text-xl font-bold text-emerald-500 flex items-center gap-1.5">
                     <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping" />
-                    সক্রিয় (Online)
+                    {at.kpiAiOnline}
                   </span>
                   <span className="text-xs text-[#58637f] dark:text-[#a6b3d6]">Gemini 3.5</span>
                 </div>
@@ -402,11 +573,11 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
 
               <div className="rounded-2xl border border-[#dde6f2] bg-white p-6 shadow-sm dark:border-[#233468] dark:bg-[#132050]">
                 <p className="text-xs font-bold text-[#58637f] uppercase tracking-wider dark:text-[#a6b3d6]">
-                  গড় আরওআই (ROAS)
+                  {at.kpiRoas}
                 </p>
                 <div className="mt-2 flex items-baseline justify-between">
-                  <span className="text-3xl font-extrabold text-[#0c77bb] dark:text-[#1ea5e8]">৩গুণ+</span>
-                  <span className="text-xs text-[#58637f] dark:text-[#a6b3d6]">Campaign target</span>
+                  <span className="text-3xl font-extrabold text-[#0c77bb] dark:text-[#1ea5e8]">3x+</span>
+                  <span className="text-xs text-[#58637f] dark:text-[#a6b3d6]">Target ROI</span>
                 </div>
               </div>
             </div>
@@ -415,13 +586,13 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
             <div className="rounded-2xl border border-[#dde6f2] bg-white p-6 shadow-sm dark:border-[#233468] dark:bg-[#132050]">
               <div className="flex items-center justify-between pb-4 border-b border-[#dde6f2] dark:border-[#233468]">
                 <h3 className="font-display font-bold text-lg text-[#14213f] dark:text-white">
-                  সর্বশেষ মেসেজ ও লিড (Recent Inquiries)
+                  {at.recentLeadsTitle}
                 </h3>
                 <button
                   onClick={() => setActiveTab('inquiries')}
                   className="text-xs font-bold text-[#f8701a] hover:underline"
                 >
-                  সবগুলো দেখুন ({inquiries.length}) →
+                  {at.viewAllBtn} ({inquiries.length}) →
                 </button>
               </div>
 
@@ -440,7 +611,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                         </span>
                       </div>
                       <p className="text-xs text-[#58637f] dark:text-[#a6b3d6] mt-0.5">
-                        📞 {item.phone} · সার্ভিস: {item.service}
+                        📞 {item.phone} · {item.service}
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -470,7 +641,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                 <Search className="h-5 w-5 text-[#58637f]" />
                 <input
                   type="text"
-                  placeholder="নাম, ফোন বা সার্ভিস দিয়ে খুঁজুন..."
+                  placeholder={at.searchPlaceholder}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full bg-transparent text-sm outline-none placeholder-[#58637f] dark:text-white"
@@ -483,10 +654,10 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                   onChange={(e) => setFilterStatus(e.target.value as any)}
                   className="rounded-lg border border-[#dde6f2] bg-white px-3 py-1.5 text-xs font-semibold outline-none dark:border-[#233468] dark:bg-[#0a1330] dark:text-white"
                 >
-                  <option value="all">সব স্ট্যাটাস ({inquiries.length})</option>
-                  <option value="new">নতুন (New)</option>
-                  <option value="contacted">যোগাযোগকৃত (Contacted)</option>
-                  <option value="closed">সম্পন্ন (Closed)</option>
+                  <option value="all">{at.allStatus} ({inquiries.length})</option>
+                  <option value="new">{at.statusNew}</option>
+                  <option value="contacted">{at.statusContacted}</option>
+                  <option value="closed">{at.statusClosed}</option>
                 </select>
 
                 <button
@@ -494,7 +665,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                   className="inline-flex items-center gap-1.5 rounded-lg border border-[#dde6f2] bg-[#f8fafc] px-3.5 py-1.5 text-xs font-bold text-[#14213f] hover:bg-[#f2f7fc] dark:border-[#233468] dark:bg-[#0f1a40] dark:text-white"
                 >
                   <Download className="h-3.5 w-3.5" />
-                  <span>Export CSV</span>
+                  <span>{at.exportCsv}</span>
                 </button>
               </div>
             </div>
@@ -505,19 +676,19 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                 <table className="w-full text-left text-sm">
                   <thead className="bg-[#f8fafc] dark:bg-[#0f1a40] text-xs font-bold text-[#58637f] dark:text-[#a6b3d6] uppercase tracking-wider border-b border-[#dde6f2] dark:border-[#233468]">
                     <tr>
-                      <th className="px-6 py-4">গ্রাহকের নাম (Name)</th>
-                      <th className="px-6 py-4">ফোন / WhatsApp</th>
-                      <th className="px-6 py-4">প্রয়োজনীয় সার্ভিস</th>
-                      <th className="px-6 py-4">তারিখ</th>
-                      <th className="px-6 py-4">স্ট্যাটাস</th>
-                      <th className="px-6 py-4 text-right">অ্যাকশন</th>
+                      <th className="px-6 py-4">{at.colName}</th>
+                      <th className="px-6 py-4">{at.colPhone}</th>
+                      <th className="px-6 py-4">{at.colService}</th>
+                      <th className="px-6 py-4">{at.colDate}</th>
+                      <th className="px-6 py-4">{at.colStatus}</th>
+                      <th className="px-6 py-4 text-right">{at.colActions}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#dde6f2] dark:divide-[#233468]">
                     {filteredInquiries.length === 0 ? (
                       <tr>
                         <td colSpan={6} className="px-6 py-12 text-center text-sm text-[#58637f] dark:text-[#a6b3d6]">
-                          কোনো মেসেজ পাওয়া যায়নি।
+                          {at.noInquiries}
                         </td>
                       </tr>
                     ) : (
@@ -549,9 +720,9 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                                   : 'bg-gray-100 border-gray-300 text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300'
                               }`}
                             >
-                              <option value="new">নতুন (New)</option>
-                              <option value="contacted">যোগাযোগকৃত</option>
-                              <option value="closed">সম্পন্ন (Closed)</option>
+                              <option value="new">{at.statusNew}</option>
+                              <option value="contacted">{at.statusContacted}</option>
+                              <option value="closed">{at.statusClosed}</option>
                             </select>
                           </td>
                           <td className="px-6 py-4 text-right">
@@ -559,7 +730,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                               <button
                                 onClick={() => setSelectedInquiry(item)}
                                 className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg dark:hover:bg-blue-950/40"
-                                title="মেসেজ বিস্তারিত দেখুন"
+                                title={at.modalTitle}
                               >
                                 <Eye className="h-4 w-4" />
                               </button>
@@ -568,21 +739,21 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                                 target="_blank"
                                 rel="noreferrer"
                                 className="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-lg dark:hover:bg-emerald-950/40"
-                                title="WhatsApp এ মেসেজ দিন"
+                                title="WhatsApp"
                               >
                                 <MessageSquare className="h-4 w-4" />
                               </a>
                               <a
                                 href={`tel:${item.phone}`}
                                 className="p-1.5 text-[#f8701a] hover:bg-orange-50 rounded-lg dark:hover:bg-orange-950/40"
-                                title="সরাসরি কল দিন"
+                                title="Call"
                               >
                                 <Phone className="h-4 w-4" />
                               </a>
                               <button
                                 onClick={() => deleteInquiry(item.id)}
                                 className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg dark:hover:bg-red-950/40"
-                                title="মুছে ফেলুন"
+                                title="Delete"
                               >
                                 <Trash2 className="h-4 w-4" />
                               </button>
@@ -602,7 +773,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                 <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl dark:bg-[#0f1a40] border border-[#dde6f2] dark:border-[#233468]">
                   <div className="flex items-center justify-between pb-4 border-b border-[#dde6f2] dark:border-[#233468]">
                     <h3 className="font-display font-bold text-lg text-[#14213f] dark:text-white">
-                      মেসেজের বিস্তারিত তথ্য
+                      {at.modalTitle}
                     </h3>
                     <button
                       onClick={() => setSelectedInquiry(null)}
@@ -613,21 +784,21 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                   </div>
                   <div className="mt-4 space-y-4 text-sm">
                     <div>
-                      <span className="text-xs font-semibold text-[#58637f] dark:text-[#a6b3d6]">গ্রাহকের নাম:</span>
+                      <span className="text-xs font-semibold text-[#58637f] dark:text-[#a6b3d6]">{at.modalCustomer}</span>
                       <p className="font-bold text-base text-[#14213f] dark:text-white">{selectedInquiry.name}</p>
                     </div>
                     <div>
-                      <span className="text-xs font-semibold text-[#58637f] dark:text-[#a6b3d6]">ফোন / হোয়াটসঅ্যাপ:</span>
+                      <span className="text-xs font-semibold text-[#58637f] dark:text-[#a6b3d6]">{at.modalPhone}</span>
                       <p className="font-mono text-base text-[#0c77bb] dark:text-[#1ea5e8]">{selectedInquiry.phone}</p>
                     </div>
                     <div>
-                      <span className="text-xs font-semibold text-[#58637f] dark:text-[#a6b3d6]">আবেদিত সার্ভিস:</span>
+                      <span className="text-xs font-semibold text-[#58637f] dark:text-[#a6b3d6]">{at.modalService}</span>
                       <p className="font-semibold text-sm text-[#f8701a]">{selectedInquiry.service}</p>
                     </div>
                     <div>
-                      <span className="text-xs font-semibold text-[#58637f] dark:text-[#a6b3d6]">বার্তা (Message):</span>
+                      <span className="text-xs font-semibold text-[#58637f] dark:text-[#a6b3d6]">{at.modalMessage}</span>
                       <div className="mt-1 rounded-xl bg-[#f8fafc] p-4 text-sm leading-relaxed dark:bg-[#132050] text-[#14213f] dark:text-white border border-[#dde6f2] dark:border-[#233468]">
-                        {selectedInquiry.message || 'কোনো অতিরিক্ত নোট দেননি।'}
+                        {selectedInquiry.message || at.modalNoNote}
                       </div>
                     </div>
                   </div>
@@ -639,13 +810,13 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                       className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white hover:bg-emerald-700"
                     >
                       <MessageSquare className="h-4 w-4" />
-                      <span>WhatsApp মেসেজ পাঠান</span>
+                      <span>{at.modalSendWa}</span>
                     </a>
                     <button
                       onClick={() => setSelectedInquiry(null)}
                       className="rounded-xl border border-[#dde6f2] px-4 py-2.5 text-xs font-bold text-[#58637f] hover:bg-gray-100 dark:border-[#233468] dark:text-white dark:hover:bg-white/10"
                     >
-                      বন্ধ করুন
+                      {at.modalClose}
                     </button>
                   </div>
                 </div>
@@ -659,12 +830,12 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
           <div className="mt-8 space-y-6 max-w-3xl">
             <div className="rounded-2xl border border-[#dde6f2] bg-white p-6 shadow-sm dark:border-[#233468] dark:bg-[#132050] space-y-5">
               <h3 className="font-display font-bold text-lg text-[#14213f] dark:text-white border-b border-[#dde6f2] pb-3 dark:border-[#233468]">
-                হিরো সেকশন কনটেন্ট (Hero Section)
+                {at.cmsHeroTitle}
               </h3>
 
               <div>
                 <label className="block text-xs font-bold text-[#58637f] dark:text-[#a6b3d6] mb-1.5 uppercase">
-                  ছোট ট্যাগলাইন (Kicker Text)
+                  {at.cmsKickerLabel}
                 </label>
                 <input
                   type="text"
@@ -676,7 +847,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
 
               <div>
                 <label className="block text-xs font-bold text-[#58637f] dark:text-[#a6b3d6] mb-1.5 uppercase">
-                  বর্ণনা (Hero Lead Description)
+                  {at.cmsLeadLabel}
                 </label>
                 <textarea
                   rows={3}
@@ -687,13 +858,13 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
               </div>
 
               <h3 className="font-display font-bold text-lg text-[#14213f] dark:text-white border-b border-[#dde6f2] pt-4 pb-3 dark:border-[#233468]">
-                যোগাযোগের তথ্য (Contact Information)
+                {at.cmsContactTitle}
               </h3>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className="block text-xs font-bold text-[#58637f] dark:text-[#a6b3d6] mb-1.5 uppercase">
-                    ইমেইল এড্রেস
+                    {at.cmsEmailLabel}
                   </label>
                   <input
                     type="email"
@@ -704,7 +875,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-[#58637f] dark:text-[#a6b3d6] mb-1.5 uppercase">
-                    ফোন বা হটলাইন নম্বর
+                    {at.cmsPhoneLabel}
                   </label>
                   <input
                     type="text"
@@ -717,7 +888,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
 
               <div>
                 <label className="block text-xs font-bold text-[#58637f] dark:text-[#a6b3d6] mb-1.5 uppercase">
-                  অফিস লোকেশন (Location)
+                  {at.cmsLocationLabel}
                 </label>
                 <input
                   type="text"
@@ -733,12 +904,12 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                   className="inline-flex items-center gap-2 rounded-xl bg-[#f8701a] px-6 py-3 font-display text-sm font-bold text-white shadow-lg shadow-[#f8701a]/30 hover:bg-[#e25f0c]"
                 >
                   <Save className="h-4 w-4" />
-                  <span>পরিবর্তন সেভ করুন (Save Changes)</span>
+                  <span>{at.cmsSaveBtn}</span>
                 </button>
                 {cmsSaveSuccess && (
                   <span className="text-xs font-bold text-emerald-600 flex items-center gap-1.5 animate-bounce">
                     <CheckCircle className="h-4 w-4" />
-                    সফলভাবে সেভ হয়েছে!
+                    {at.cmsSaveSuccess}
                   </span>
                 )}
               </div>
@@ -756,17 +927,17 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                 </div>
                 <div>
                   <h3 className="font-display font-bold text-lg text-[#14213f] dark:text-white">
-                    Gemini AI অ্যাসিস্ট্যান্ট প্রম্পট
+                    {at.aiTitle}
                   </h3>
                   <p className="text-xs text-[#58637f] dark:text-[#a6b3d6]">
-                    AI কাস্টমারদের সাথে কীভাবে কথা বলবে এবং কী কী তথ্য দেবে তা নির্ধারণ করুন
+                    {at.aiSubtitle}
                   </p>
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-[#58637f] dark:text-[#a6b3d6] mb-1.5 uppercase">
-                  AI System Instructions
+                  {at.aiPromptLabel}
                 </label>
                 <textarea
                   rows={8}
@@ -778,9 +949,7 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
 
               <div className="rounded-xl bg-[#f2f7fc] p-4 text-xs text-[#1a3c8e] dark:bg-[#0f1a40] dark:text-[#1ea5e8] flex items-center gap-2">
                 <Sparkles className="h-5 w-5 shrink-0" />
-                <span>
-                  বর্তমানে সক্রিয় মডেল: <strong>Gemini 3.5 Flash Lite</strong> (সুপার ফাস্ট এবং নির্ভুল বাংলা উত্তর দেওয়ার উপযোগী)।
-                </span>
+                <span>{at.aiModelNote}</span>
               </div>
 
               <div className="pt-2 flex items-center gap-4">
@@ -789,12 +958,12 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                   className="inline-flex items-center gap-2 rounded-xl bg-[#1a3c8e] px-6 py-3 font-display text-sm font-bold text-white hover:bg-[#142e6f]"
                 >
                   <Save className="h-4 w-4" />
-                  <span>AI সেটিংস সংরক্ষণ করুন</span>
+                  <span>{at.aiSaveBtn}</span>
                 </button>
                 {aiSaveSuccess && (
                   <span className="text-xs font-bold text-emerald-600 flex items-center gap-1.5">
                     <CheckCircle className="h-4 w-4" />
-                    AI প্রম্পট আপডেট হয়েছে!
+                    {at.aiSaveSuccess}
                   </span>
                 )}
               </div>
@@ -807,15 +976,15 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
           <div className="mt-8 space-y-6 max-w-xl">
             <div className="rounded-2xl border border-[#dde6f2] bg-white p-6 shadow-sm dark:border-[#233468] dark:bg-[#132050] space-y-4">
               <h3 className="font-display font-bold text-lg text-[#14213f] dark:text-white border-b border-[#dde6f2] pb-3 dark:border-[#233468]">
-                পাসওয়ার্ড পরিবর্তন করুন
+                {at.settingsPassTitle}
               </h3>
               <div>
                 <label className="block text-xs font-bold text-[#58637f] dark:text-[#a6b3d6] mb-1.5 uppercase">
-                  নতুন অ্যাডমিন পাসওয়ার্ড
+                  {at.settingsNewPass}
                 </label>
                 <input
                   type="password"
-                  placeholder="নতুন পাসওয়ার্ড দিন..."
+                  placeholder={at.settingsNewPassPlaceholder}
                   id="new_admin_pass"
                   className="w-full rounded-xl border border-[#dde6f2] bg-[#f8fafc] px-4 py-2.5 text-sm dark:border-[#233468] dark:bg-[#0a1330] dark:text-white outline-none focus:border-[#f8701a]"
                 />
@@ -825,15 +994,15 @@ export function AdminPanel({ onExit }: { onExit: () => void }) {
                   const el = document.getElementById('new_admin_pass') as HTMLInputElement;
                   if (el && el.value.length >= 6) {
                     localStorage.setItem('admin_custom_password', el.value);
-                    alert('পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে!');
+                    alert(at.settingsPassUpdated);
                     el.value = '';
                   } else {
-                    alert('কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড দিন।');
+                    alert(at.settingsPassMin);
                   }
                 }}
                 className="rounded-xl bg-[#1a3c8e] px-5 py-2.5 text-xs font-bold text-white hover:bg-[#142e6f]"
               >
-                পাসওয়ার্ড আপডেট করুন
+                {at.settingsUpdateBtn}
               </button>
             </div>
           </div>
