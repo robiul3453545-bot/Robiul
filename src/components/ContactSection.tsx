@@ -35,6 +35,21 @@ export function ContactSection() {
       return;
     }
 
+    // Save lead into localStorage for Admin Panel
+    try {
+      const newInquiry = {
+        id: Date.now().toString(),
+        name: trimmedName,
+        phone: trimmedPhone,
+        service: form.service.trim() || (language === 'bn' ? 'সাধারণ অনুসন্ধান' : 'General Inquiry'),
+        message: form.message.trim(),
+        date: new Date().toISOString(),
+        status: 'new',
+      };
+      const existing = JSON.parse(localStorage.getItem('robiconic_inquiries') || '[]');
+      localStorage.setItem('robiconic_inquiries', JSON.stringify([newInquiry, ...existing]));
+    } catch {}
+
     setError(null);
     setSubmitted(true);
   };
