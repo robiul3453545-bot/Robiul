@@ -1,0 +1,6 @@
+# Robiconic Digital Robots.txt
+User-agent: *
+Allow: /
+Disallow: /#admin
+
+Sitemap: https://robiconicdigital.vercel.app/sitemap.xml
