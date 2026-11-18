@@ -4,8 +4,9 @@ import { Header } from './components/Header';
 import { HeroIllustration } from './components/HeroIllustration';
 import { StatsBand } from './components/StatsBand';
 import { ContactSection } from './components/ContactSection';
-import { SITE_CONTENT, type ServiceItem } from './data/siteData';
 import { AIChatAssistant } from './components/AIChatAssistant';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { type ServiceItem } from './data/siteData';
 
 function ServiceIcon({ name, color }: { name: ServiceItem['iconName']; color: string }) {
   const props = { className: 'h-5 w-5', style: { color } };
@@ -21,7 +22,8 @@ function ServiceIcon({ name, color }: { name: ServiceItem['iconName']; color: st
   }
 }
 
-export default function App() {
+function MainLayout() {
+  const { t } = useLanguage();
   const [dark, setDark] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -45,28 +47,28 @@ export default function App() {
           <div className="mx-auto grid max-w-[1140px] items-center gap-12 px-6 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <p className="text-sm font-semibold tracking-wide text-[#0c77bb] dark:text-[#1ea5e8]">
-                {SITE_CONTENT.hero.kicker}
+                {t.hero.kicker}
               </p>
               <h1 className="mt-3 max-w-2xl font-display text-[clamp(2.4rem,5.2vw,4.1rem)] font-extrabold leading-[1.06] tracking-tight text-[#1a3c8e] [text-wrap:balance] dark:text-white">
-                {SITE_CONTENT.hero.headlineStart}
-                <span className="text-[#f8701a]">{SITE_CONTENT.hero.headlineAccent}</span>
-                {SITE_CONTENT.hero.headlineEnd}
+                {t.hero.headlineStart}
+                <span className="text-[#f8701a]">{t.hero.headlineAccent}</span>
+                {t.hero.headlineEnd}
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-[#58637f] dark:text-[#a6b3d6]">
-                {SITE_CONTENT.hero.lead}
+                {t.hero.lead}
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
                   href="#contact"
                   className="inline-flex min-h-[46px] items-center justify-center rounded-lg bg-[#f8701a] px-7 py-3 font-display text-base font-bold tracking-wide text-white transition-colors duration-150 hover:bg-[#e25f0c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f8701a]"
                 >
-                  {SITE_CONTENT.hero.primaryCta}
+                  {t.hero.primaryCta}
                 </a>
                 <a
                   href="#services"
                   className="inline-flex min-h-[46px] items-center justify-center rounded-lg border border-[#1a3c8e] px-6 py-3 font-display text-base font-bold tracking-wide text-[#1a3c8e] transition-colors duration-150 hover:bg-[#1a3c8e] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f8701a] dark:border-white/70 dark:text-white dark:hover:bg-white dark:hover:text-[#0a1330]"
                 >
-                  {SITE_CONTENT.hero.secondaryCta}
+                  {t.hero.secondaryCta}
                 </a>
               </div>
             </div>
@@ -84,13 +86,13 @@ export default function App() {
           <div className="mx-auto max-w-[1140px] px-6">
             <div className="max-w-xl">
               <h2 className="font-display text-3xl font-extrabold tracking-tight text-[#1a3c8e] sm:text-4xl dark:text-white">
-                {SITE_CONTENT.servicesTitle}
+                {t.servicesTitle}
               </h2>
-              <p className="mt-3 text-base text-[#58637f] dark:text-[#a6b3d6]">{SITE_CONTENT.servicesIntro}</p>
+              <p className="mt-3 text-base text-[#58637f] dark:text-[#a6b3d6]">{t.servicesIntro}</p>
             </div>
 
             <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {SITE_CONTENT.services.map((service) => (
+              {t.services.map((service) => (
                 <article
                   key={service.id}
                   className="flex flex-col justify-between rounded-xl border border-[#dde6f2] border-t-4 bg-white p-6 transition-transform duration-150 hover:-translate-y-0.5 dark:border-[#233468] dark:bg-[#132050]"
@@ -98,15 +100,20 @@ export default function App() {
                 >
                   <div>
                     <div className="flex items-center justify-between">
-                      <span className="font-display text-sm font-bold tracking-wider text-[#58637f] tabular-nums dark:text-[#a6b3d6]">
+                      <span className="font-display text-sm font-extrabold tracking-wider text-[#58637f] dark:text-[#a6b3d6]">
                         {service.number}
                       </span>
-                      <ServiceIcon name={service.iconName} color={service.accentColor} />
+                      <span
+                        className="grid h-10 w-10 place-items-center rounded-lg bg-[#f2f7fc] dark:bg-[#0f1a40]"
+                        aria-hidden="true"
+                      >
+                        <ServiceIcon name={service.iconName} color={service.accentColor} />
+                      </span>
                     </div>
-                    <h3 className="mt-4 font-display text-2xl font-bold text-[#14213f] dark:text-white">
+                    <h3 className="mt-6 font-display text-xl font-bold text-[#14213f] dark:text-white">
                       {service.title}
                     </h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-[#58637f] dark:text-[#a6b3d6]">
+                    <p className="mt-2.5 text-[15px] leading-relaxed text-[#58637f] dark:text-[#a6b3d6]">
                       {service.description}
                     </p>
                   </div>
@@ -116,18 +123,18 @@ export default function App() {
           </div>
         </section>
 
-        {/* Portfolio / Work */}
-        <section id="work" className="bg-[#f2f7fc] py-20 dark:bg-[#0f1a40]">
+        {/* Work / Results */}
+        <section id="work" className="border-t border-[#dde6f2] bg-[#f8fafc] py-20 dark:border-[#233468] dark:bg-[#0c1638]">
           <div className="mx-auto max-w-[1140px] px-6">
             <div className="max-w-xl">
               <h2 className="font-display text-3xl font-extrabold tracking-tight text-[#1a3c8e] sm:text-4xl dark:text-white">
-                {SITE_CONTENT.workTitle}
+                {t.workTitle}
               </h2>
-              <p className="mt-3 text-base text-[#58637f] dark:text-[#a6b3d6]">{SITE_CONTENT.workIntro}</p>
+              <p className="mt-3 text-base text-[#58637f] dark:text-[#a6b3d6]">{t.workIntro}</p>
             </div>
 
             <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {SITE_CONTENT.work.map((item) => (
+              {t.work.map((item) => (
                 <article
                   key={item.id}
                   className="overflow-hidden rounded-xl border border-[#dde6f2] bg-white dark:border-[#233468] dark:bg-[#132050]"
@@ -173,13 +180,13 @@ export default function App() {
           <div className="mx-auto max-w-[1140px] px-6">
             <div className="max-w-xl">
               <h2 className="font-display text-3xl font-extrabold tracking-tight text-[#1a3c8e] sm:text-4xl dark:text-white">
-                {SITE_CONTENT.processTitle}
+                {t.processTitle}
               </h2>
-              <p className="mt-3 text-base text-[#58637f] dark:text-[#a6b3d6]">{SITE_CONTENT.processIntro}</p>
+              <p className="mt-3 text-base text-[#58637f] dark:text-[#a6b3d6]">{t.processIntro}</p>
             </div>
 
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {SITE_CONTENT.steps.map((step, index) => (
+              {t.steps.map((step, index) => (
                 <div key={step.number} className="relative">
                   <div className="flex items-center gap-3">
                     <span
@@ -189,7 +196,7 @@ export default function App() {
                     >
                       {step.number}
                     </span>
-                    {index < SITE_CONTENT.steps.length - 1 && (
+                    {index < t.steps.length - 1 && (
                       <span
                         aria-hidden="true"
                         className="hidden h-px flex-1 bg-[#dde6f2] lg:block dark:bg-[#233468]"
@@ -216,14 +223,14 @@ export default function App() {
           <div className="flex items-center gap-3">
             {!footerLogoError && (
               <img
-                src={SITE_CONTENT.brand.iconPath}
+                src={t.brand.iconPath}
                 alt="Robiconic Digital logo"
                 referrerPolicy="no-referrer"
                 onError={() => setFooterLogoError(true)}
                 className="h-9 w-auto rounded-md bg-white p-1"
               />
             )}
-            <span>© {new Date().getFullYear()} Robiconic Digital. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Robiconic Digital. {t.footer.rights}</span>
           </div>
 
           <button
@@ -232,7 +239,7 @@ export default function App() {
             className="inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-white/15 px-3.5 py-2 text-xs font-medium text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-[#f8701a]"
           >
             {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            <span>{dark ? 'Light theme' : 'Dark theme'}</span>
+            <span>{dark ? t.footer.lightTheme : t.footer.darkTheme}</span>
           </button>
         </div>
       </footer>
@@ -241,4 +248,10 @@ export default function App() {
   );
 }
 
-
+export default function App() {
+  return (
+    <LanguageProvider>
+      <MainLayout />
+    </LanguageProvider>
+  );
+}
